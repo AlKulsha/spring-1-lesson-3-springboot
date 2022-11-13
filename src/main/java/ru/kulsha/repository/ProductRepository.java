@@ -35,5 +35,9 @@ public class ProductRepository {
                 .orElseThrow(() -> new RuntimeException("Product is not found"));
     }
 
+    public void add(Product product){
+        products.add(product);
+    }
+
 
 }

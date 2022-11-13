@@ -3,16 +3,13 @@ package ru.kulsha.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import ru.kulsha.model.Product;
 import ru.kulsha.repository.ProductRepository;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class MainController {
     private ProductRepository productRepository;
 
@@ -22,7 +19,6 @@ public class MainController {
     }
 
     @GetMapping("/product/{id}/info")
-    @ResponseBody
     public String showProductInfo (@PathVariable Long id) {
         return "Product # " + id;
     }
@@ -38,5 +34,17 @@ public class MainController {
         Product product = productRepository.findById(id);
         model.addAttribute("product", product );
         return "product_info_page";
+    }
+
+    @GetMapping("/show_form")
+    public String showFormPage(){
+        return "product_form";
+    }
+
+    @GetMapping("/add_product")
+    public String addProduct(@RequestParam Long id, @RequestParam String title, @RequestParam int price){
+        Product product = new Product(id, title, price);
+        productRepository.add(product);
+        return "redirect:/products";
     }
 }
