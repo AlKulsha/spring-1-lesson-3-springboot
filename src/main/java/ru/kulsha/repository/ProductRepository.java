@@ -28,16 +28,16 @@ public class ProductRepository {
         return Collections.unmodifiableList(products);
     }
 
+   public void deleteById(Long id){
+        products.removeIf(p -> p.getId().equals(id));
+   }
+
     public Product findById(Long id){
-        return products.stream()
-                .filter(p -> p.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Product is not found"));
+        return  products.stream().filter(p -> p.getId().equals(id)).findFirst().get();
     }
 
-    public void add(Product product){
-        products.add(product);
-    }
+
+
 
 
 }

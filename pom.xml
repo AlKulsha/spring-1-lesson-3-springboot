@@ -10,9 +10,9 @@
 	</parent>
 
 	<groupId>ru.kulsha</groupId>
-	<artifactId>spring-1-lesson-3-springboot</artifactId>
+	<artifactId>spring-1-lesson-4-springboot+js</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-1-lesson-3-springboot</name>
+	<name>spring-1-lesson-4-springboot+js</name>
 	<description>SpringWebProject</description>
 
 	<properties>
