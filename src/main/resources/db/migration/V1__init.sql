@@ -1,0 +1,2 @@
+create table if not exists products (id bigserial primary key, title varchar(255), price int);
+insert into products (title, price) values ('book', 5600), ('pencil', 150), ('cup', 800), ('bag', 1000), ('magazine', 250), ('mirror', 1300), ('pillow', 1990), ('toy', 300), ('lamp', 295), ('cream', 1560);

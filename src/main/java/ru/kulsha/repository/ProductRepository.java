@@ -1,43 +1,32 @@
 package ru.kulsha.repository;
 
-import org.springframework.stereotype.Component;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 import ru.kulsha.model.Product;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
-@Component
-public class ProductRepository {
-    private List<Product> products;
+@Repository
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @PostConstruct
-    public void init(){
-        products = new ArrayList<>(List.of(
-                new Product(1L, "Milk", 80),
-                new Product(2L, "Jam", 150),
-                new Product(3L, "Eggs", 120),
-                new Product(4L, "Potato", 30),
-                new Product(5L, "Juice", 200)
+//    Optional<Product> findByName(String name);
+//    @Query("select p from Product p where p.price < 2000")
+//    List<Product> findPriceIsUnder();
+//
+//    @Query("select p.price from Product p where p.title=:title")
+//    Integer hqlGetPriceByTitle (String title);
+//
+//    @Query(value = "select price from products where title= :title", nativeQuery = true)
+//    Integer nativeSqlGetPriceByTitle (String title);
 
-        ));
-    }
-
-    public List<Product> getAllProducts(){
-        return Collections.unmodifiableList(products);
-    }
-
-   public void deleteById(Long id){
-        products.removeIf(p -> p.getId().equals(id));
-   }
-
-    public Product findById(Long id){
-        return  products.stream().filter(p -> p.getId().equals(id)).findFirst().get();
-    }
-
-
-
-
+    //Если бы у продуктов был дополнительный атрибут, то неленивая загрузка
+    //@Query("select p from Product p join fetch p.attribute where p.id=:id")
 
 }
+
+
+
+
+
