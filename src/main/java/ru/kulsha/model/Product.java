@@ -16,7 +16,16 @@ public class Product {
     @Column(name = "price")
     private int price;
 
+    @Column(name="secret_key")
+    private String secretKey;
+
     public Product() {
+    }
+
+    public Product(Long id, String title, int price) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
     }
 
     public Long getId() {
@@ -41,5 +50,13 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getSecretKey() {
+        return secretKey;
+    }
+
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
     }
 }

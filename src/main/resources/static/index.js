@@ -1,38 +1,29 @@
 angular.module('app', []).controller('indexController', function($scope, $http){
-   const contextPath='http://localhost:8189/app';
+   const contextPath='http://localhost:8189/app/api/v1';
 
    console.log(123);
 
-   $scope.loadProducts = function(){
-     $http.get(contextPath + '/products')
-       .then(function (response){
-
-//         console.log(response.data) - позволяет просматривать данные, поступающие на фронт
-
-         $scope.ProductList = response.data;
-       });
-   };
+       $scope.loadProducts = function (pageIndex = 1) {
+           $http({
+               url: contextPath + '/products',
+               method: 'GET',
+               params: {
+                   title_part: $scope.filter ? $scope.filter.title_part : null,
+                   min_price: $scope.filter ? $scope.filter.min_price : null,
+                   max_price: $scope.filter ? $scope.filter.max_price : null
+               }
+           }).then(function (response) {
+               $scope.ProductList = response.data.content;
+           });
+       };
 
    $scope.deleteProduct = function (productId){
-       $http.get(contextPath + '/products/delete/' + productId)
+       $http.delete(contextPath + '/products/' + productId)
               .then(function (response){
                 $scope.loadProducts();
               });
    }
 
-      $scope.changePrice = function (productId, delta){
-            $http({
-              url:contextPath + '/products/changePrice/',
-              method: 'GET',
-              params: {
-                productId: productId,
-                delta: delta
-              }
-            }).then(function(response){
-              $scope.loadProducts();
-            });
-
-      }
 
       $scope.createProductJson = function(){
             console.log($scope.newProductJson);
@@ -41,22 +32,22 @@ angular.module('app', []).controller('indexController', function($scope, $http){
                             $scope.loadProducts();
                           });
       }
-
-       $scope.sumTwoNumbers = function(){
-          console.log($scope.calcAdd);
-          $http({
-              url:contextPath + '/calc/add',
-              method: 'get',
-              params: {
-                a: $scope.calcAdd.a,
-                b: $scope.calcAdd.b
-              }
-          }).then(function(response){
-              alert('The summary is ' + response.data.value);
-              $scope.calcAdd = null;
-          });
-
-       }
+//
+//       $scope.sumTwoNumbers = function(){
+//          console.log($scope.calcAdd);
+//          $http({
+//              url:contextPath + '/calc/add',
+//              method: 'get',
+//              params: {
+//                a: $scope.calcAdd.a,
+//                b: $scope.calcAdd.b
+//              }
+//          }).then(function(response){
+//              alert('The summary is ' + response.data.value);
+//              $scope.calcAdd = null;
+//          });
+//
+//       }
 
    $scope.loadProducts();
 });

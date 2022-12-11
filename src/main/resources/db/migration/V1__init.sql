@@ -1,2 +1,2 @@
-create table if not exists products (id bigserial primary key, title varchar(255), price int);
-insert into products (title, price) values ('book', 5600), ('pencil', 150), ('cup', 800), ('bag', 1000), ('magazine', 250), ('mirror', 1300), ('pillow', 1990), ('toy', 300), ('lamp', 295), ('cream', 1560);
+create table if not exists products (id bigserial primary key, title varchar(255), price int, secret_key varchar(255));
+insert into products (title, price, secret_key) values ('book', 5600, 'kjhsuio'), ('pencil', 150, 'kjhsuio'), ('cup', 800, 'kjhsuio'), ('bag', 1000, 'kjhsuio'), ('magazine', 250, 'kjhsuio'), ('mirror', 1300, 'kjhsuio'), ('pillow', 1990, 'kjhsuio'), ('toy', 300, 'kjhsuio'), ('lamp', 295, 'kjhsuio'), ('cream', 1560, 'kjhsuio');
