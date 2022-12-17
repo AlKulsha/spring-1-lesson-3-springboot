@@ -26,7 +26,7 @@
         <p></p>
         <div class="form-floating input-group-sm">
             <input type="number" class="form-control" id="filterMaxPrice" placeholder="" ng-model="filter.max_price">
-            <label for="filterMaxPrice">Maximum Price</label>
+            <label for="filterMaxPrice">Maximal Price</label>
         </div>
         <p></p>
         <button class="btn btn-outline-warning btn-sm" style="width: 100%;" type="submit">Submit</button>
@@ -38,42 +38,15 @@
           <td>Id</td>
           <td>Title</td>
           <td>Price</td>
-          <td>Action</td>
       </tr>
       <tbody>
-      <tr ng-repeat="p in ProductList">
+      <tr ng-repeat="p in ProductsPage.content">
           <td>{{p.id}}</td>
           <td>{{p.title}}</td>
-          <td>
-              {{p.price}}
-          </td>
-          <td>
-              <button class="btn btn-danger" ng-click="deleteProduct(p.id)">Delete</button>
-          </td>
+          <td>{{p.price}}</td>
       </tr>
       </tbody>
   </table>
-
-  <p></p>
-  <h3>Create product Json</h3>
-  <form novalidate ng-submit="createProductJson()">
-        <input class="form-control" type="text" placeholder="Title" ng-model="newProductJson.title">
-        <p></p>
-        <input class="form-control" type="number" placeholder="Price" ng-model="newProductJson.price">
-        <p></p>
-        <button class="btn btn-primary" type="submit">Submit</button>
-  </form>
-
-<!--    <p></p>-->
-<!--    <h3>Summary</h3>-->
-<!--    <form novalidate ng-submit="sumTwoNumbers()">-->
-<!--        <input class="form-control" type="number" placeholder="a" ng-model="calcAdd.a">-->
-<!--        <p></p>-->
-<!--        <input class="form-control" type="number" placeholder="b" ng-model="calcAdd.b">-->
-<!--        <p></p>-->
-<!--        <button class="btn btn-primary" type="submit">Submit</button>-->
-<!--    </form>-->
-
 
 </div>
 </body>

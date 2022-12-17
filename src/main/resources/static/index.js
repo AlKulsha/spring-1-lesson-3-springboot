@@ -13,41 +13,10 @@ angular.module('app', []).controller('indexController', function($scope, $http){
                    max_price: $scope.filter ? $scope.filter.max_price : null
                }
            }).then(function (response) {
-               $scope.ProductList = response.data.content;
+               $scope.ProductsPage = response.data;
            });
        };
 
-   $scope.deleteProduct = function (productId){
-       $http.delete(contextPath + '/products/' + productId)
-              .then(function (response){
-                $scope.loadProducts();
-              });
-   }
-
-
-      $scope.createProductJson = function(){
-            console.log($scope.newProductJson);
-             $http.post(contextPath + '/products', $scope.newProductJson)
-                          .then(function (response){
-                            $scope.loadProducts();
-                          });
-      }
-//
-//       $scope.sumTwoNumbers = function(){
-//          console.log($scope.calcAdd);
-//          $http({
-//              url:contextPath + '/calc/add',
-//              method: 'get',
-//              params: {
-//                a: $scope.calcAdd.a,
-//                b: $scope.calcAdd.b
-//              }
-//          }).then(function(response){
-//              alert('The summary is ' + response.data.value);
-//              $scope.calcAdd = null;
-//          });
-//
-//       }
 
    $scope.loadProducts();
 });
